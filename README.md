@@ -1,9 +1,3 @@
-**Auteurs : Gallucci Alex et Halaghia Steven **
-
-**Classe :** INF2A
-
-**Date :** 5/8/20
-
 # Présentation du projet
 
 ## Introduction
