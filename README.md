@@ -7,9 +7,7 @@
 
 ![](RackMultipart20200508-4-u6z2f9_html_ebb59c8863145cbc.gif)
 
-**Auteur : Halaghia Steven**
-
-**Gallucci Alex**
+**Auteur : Gallucci Alex & Halaghia Steven **
 
 **Classe :** INF2A
 
@@ -19,11 +17,6 @@
 
 # Tables des matières
 
-#
-
-Y
-
-_**[Tables des matières 2](#_Toc37629277)**_
 
 _**[1](#_Toc37629278)**__ **Présentation du projet 3** _
 
