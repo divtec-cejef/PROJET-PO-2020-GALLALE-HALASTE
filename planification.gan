@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Projet PO - Alex" company="DIVTEC" webLink="http://divtec.ch" view-date="2020-04-09" view-index="0" gantt-divider-location="590" resource-divider-location="300" version="2.8.10" locale="fr">
+<?xml version="1.0" encoding="UTF-8"?><project name="Projet PO - Alex" company="DIVTEC" webLink="http://divtec.ch" view-date="2020-05-16" view-index="0" gantt-divider-location="590" resource-divider-location="300" version="2.8.10" locale="fr">
     <description><![CDATA[Planification des heures dédiées aux portes ouvertes. Pour l'élève : Alex Gallucci]]></description>
     <view zooming-state="default:2" id="gantt-chart">
         <field id="tpd3" name="Nom" width="410" order="0"/>
@@ -47,57 +47,30 @@
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
         <task id="0" name="Choisir le language de prog." color="#8cb6ce" meeting="false" start="2020-04-27" duration="2" complete="0" thirdDate="2020-03-26" thirdDate-constraint="0" expand="true"/>
-        <task id="1" name="Connecter les guitares au PC" color="#8cb6ce" meeting="false" start="2020-04-30" duration="2" complete="0" thirdDate="2020-03-26" thirdDate-constraint="0" expand="true">
-            <depend id="38" type="2" difference="0" hardness="Strong"/>
-        </task>
-        <task id="7" name="Créer la maquette d'affichage du stand" color="#8cb6ce" meeting="false" start="2020-05-04" duration="2" complete="0" thirdDate="2020-09-22" thirdDate-constraint="0" expand="true"/>
-        <task id="6" name="Programmer le jeu" color="#8cb6ce" meeting="false" start="2020-04-20" duration="21" complete="0" thirdDate="2020-03-26" thirdDate-constraint="0" expand="true">
-            <task id="38" name="Prendre les outputs des guitares" meeting="false" start="2020-05-05" duration="1" complete="0" expand="true">
-                <depend id="41" type="2" difference="0" hardness="Strong"/>
+        <task id="1" name="Connecter les guitares au PC" color="#8cb6ce" meeting="false" start="2020-06-16" duration="2" complete="0" thirdDate="2020-03-26" thirdDate-constraint="0" expand="true"/>
+        <task id="7" name="Créer la maquette d'affichage du stand" color="#8cb6ce" meeting="false" start="2020-06-29" duration="2" complete="0" thirdDate="2020-09-22" thirdDate-constraint="0" expand="true"/>
+        <task id="6" name="Programmer le jeu" color="#8cb6ce" meeting="false" start="2020-06-04" duration="31" complete="0" thirdDate="2020-03-26" thirdDate-constraint="0" expand="true">
+            <task id="38" name="Prendre les outputs des guitares" meeting="false" start="2020-06-19" duration="1" complete="0" expand="true"/>
+            <task id="39" name="Design - icons" meeting="false" start="2020-06-25" duration="1" complete="0" expand="true"/>
+            <task id="40" name="Programmation - comportement des notes de la roue" color="#8cb6ce" meeting="false" start="2020-06-26" duration="9" complete="0" thirdDate="2020-04-20" thirdDate-constraint="0" expand="true">
+                <task id="54" name="note - change le thème du jeu" color="#8cb6ce" meeting="false" start="2020-07-10" duration="1" complete="0" thirdDate="2020-04-20" thirdDate-constraint="0" expand="true"/>
+                <task id="56" name="note - change le rythme de la musique" meeting="false" start="2020-06-29" duration="1" complete="0" expand="true"/>
+                <task id="57" name="note - interchange les 2 roues" meeting="false" start="2020-07-09" duration="1" complete="0" expand="true"/>
+                <task id="58" name="note - change le sens de la roue touchée" meeting="false" start="2020-06-30" duration="1" complete="0" expand="true"/>
+                <task id="59" name="note - fait perdre une vie au joueur" meeting="false" start="2020-07-03" duration="1" complete="0" expand="true"/>
+                <task id="60" name="note - sans effet spéciale" meeting="false" start="2020-06-26" duration="1" complete="0" expand="true"/>
+                <task id="61" name="note - fait disparaitre le curseur du  joueur" color="#8cb6ce" meeting="false" start="2020-07-06" duration="1" complete="0" thirdDate="2020-04-20" thirdDate-constraint="0" expand="true"/>
             </task>
-            <task id="39" name="Design - icons" meeting="false" start="2020-05-11" duration="1" complete="0" expand="true">
-                <depend id="60" type="2" difference="0" hardness="Strong"/>
+            <task id="41" name="Design - la roue" color="#8cb6ce" meeting="false" start="2020-06-04" duration="1" complete="0" thirdDate="2020-06-22" thirdDate-constraint="0" expand="true"/>
+            <task id="42" name="Programmation - comportement de la roue" color="#8cb6ce" meeting="false" start="2020-06-23" duration="1" complete="0" thirdDate="2020-04-20" thirdDate-constraint="0" expand="true"/>
+            <task id="46" name="Programmation - Gérer les scores" meeting="false" start="2020-07-07" duration="1" complete="0" expand="true"/>
+            <task id="47" name="Design - thème du jeu" meeting="false" start="2020-07-20" duration="5" complete="0" expand="true">
+                <task id="64" name="theme - Far West" color="#8cb6ce" meeting="false" start="2020-07-20" duration="1" complete="0" thirdDate="2020-04-20" thirdDate-constraint="0" expand="true"/>
+                <task id="66" name="thème - Futuriste (Star Wars)" color="#8cb6ce" meeting="false" start="2020-07-23" duration="1" complete="0" thirdDate="2020-04-20" thirdDate-constraint="0" expand="true"/>
+                <task id="67" name="thème - Préhistoire" color="#8cb6ce" meeting="false" start="2020-07-27" duration="1" complete="0" thirdDate="2020-04-20" thirdDate-constraint="0" expand="true"/>
             </task>
-            <task id="40" name="Programmation - comportement des notes de la roue" color="#8cb6ce" meeting="false" start="2020-05-12" duration="9" complete="0" thirdDate="2020-04-20" thirdDate-constraint="0" expand="true">
-                <task id="54" name="note - change le thème du jeu" color="#8cb6ce" meeting="false" start="2020-05-26" duration="1" complete="0" thirdDate="2020-04-20" thirdDate-constraint="0" expand="true"/>
-                <task id="56" name="note - change le rythme de la musique" meeting="false" start="2020-05-14" duration="1" complete="0" expand="true">
-                    <depend id="58" type="2" difference="0" hardness="Strong"/>
-                </task>
-                <task id="57" name="note - interchange les 2 roues" meeting="false" start="2020-05-25" duration="1" complete="0" expand="true">
-                    <depend id="54" type="2" difference="0" hardness="Strong"/>
-                </task>
-                <task id="58" name="note - change le sens de la roue touchée" meeting="false" start="2020-05-15" duration="1" complete="0" expand="true">
-                    <depend id="50" type="2" difference="0" hardness="Strong"/>
-                </task>
-                <task id="59" name="note - fait perdre une vie au joueur" meeting="false" start="2020-05-19" duration="1" complete="0" expand="true">
-                    <depend id="61" type="2" difference="0" hardness="Strong"/>
-                </task>
-                <task id="60" name="note - sans effet spéciale" meeting="false" start="2020-05-12" duration="1" complete="0" expand="true">
-                    <depend id="56" type="2" difference="0" hardness="Strong"/>
-                </task>
-                <task id="61" name="note - fait disparaitre le curseur du  joueur" color="#8cb6ce" meeting="false" start="2020-05-21" duration="1" complete="0" thirdDate="2020-04-20" thirdDate-constraint="0" expand="true">
-                    <depend id="46" type="2" difference="0" hardness="Strong"/>
-                </task>
-            </task>
-            <task id="41" name="Design - la roue" meeting="false" start="2020-05-07" duration="1" complete="0" expand="true">
-                <depend id="42" type="2" difference="0" hardness="Strong"/>
-                <depend id="51" type="2" difference="0" hardness="Strong"/>
-            </task>
-            <task id="42" name="Programmation - comportement de la roue" color="#8cb6ce" meeting="false" start="2020-05-08" duration="1" complete="0" thirdDate="2020-04-20" thirdDate-constraint="0" expand="true">
-                <depend id="39" type="2" difference="0" hardness="Strong"/>
-            </task>
-            <task id="46" name="Programmation - Gérer les scores" meeting="false" start="2020-05-22" duration="1" complete="0" expand="true">
-                <depend id="57" type="2" difference="0" hardness="Strong"/>
-            </task>
-            <task id="47" name="Design - thème du jeu" meeting="false" start="2020-04-20" duration="1" complete="0" expand="false">
-                <task id="64" name="theme - Far West" color="#8cb6ce" meeting="false" start="2020-04-20" duration="1" complete="0" thirdDate="2020-04-20" thirdDate-constraint="0" expand="true"/>
-                <task id="66" name="thème - Futuriste (Star Wars)" meeting="false" start="2020-04-20" duration="1" complete="0" expand="true"/>
-                <task id="67" name="thème - Préhistoire" meeting="false" start="2020-04-20" duration="1" complete="0" expand="true"/>
-            </task>
-            <task id="50" name="Programmation - comportement des vies" meeting="false" start="2020-05-18" duration="1" complete="0" expand="true">
-                <depend id="59" type="2" difference="0" hardness="Strong"/>
-            </task>
-            <task id="51" name="Synchroniser la musique avec l'image" meeting="false" start="2020-05-08" duration="1" complete="0" expand="true"/>
+            <task id="50" name="Programmation - comportement des vies" meeting="false" start="2020-07-02" duration="1" complete="0" expand="true"/>
+            <task id="51" name="Synchroniser la musique avec l'image" meeting="false" start="2020-06-23" duration="1" complete="0" expand="true"/>
         </task>
         <task id="35" name="Tester que tout fonctionne correctement" color="#8cb6ce" meeting="false" start="2020-09-08" duration="7" complete="0" thirdDate="2020-09-08" thirdDate-constraint="0" expand="true"/>
     </tasks>
