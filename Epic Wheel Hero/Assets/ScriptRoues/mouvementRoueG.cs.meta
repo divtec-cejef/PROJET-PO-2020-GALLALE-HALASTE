@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 484710d567930a442ad0b2647e65d77e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - blueNote: {fileID: 21300000, guid: 63a5590b1de52f64086a56512185172d, type: 3}
+  - greenNote: {fileID: 21300000, guid: 46936bd94b509ac4bb484872d0ed3044, type: 3}
+  - redNote: {fileID: 21300000, guid: 8cf0dc1f7ccc0d14ab0135388116a8f1, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
