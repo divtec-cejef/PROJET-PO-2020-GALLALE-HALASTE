@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class vieScriptG : MonoBehaviour
 {
 
-    public static int vieValue = 4;
+    public static int vieValue = 24;
 	Text vie;
     
 	
@@ -21,16 +21,16 @@ public class vieScriptG : MonoBehaviour
     {
 		switch (vieValue)
 		{
-			case 1:
+			case 0:
 			vie.text = "0";
 			break;
-			case 2:
+			case 8:
 			vie.text = "1";
 			break;
-			case 3:
+			case 16:
 			vie.text = "2";
 			break;
-			case 4:
+			case 24:
 			vie.text = "3";
 			break;
     }

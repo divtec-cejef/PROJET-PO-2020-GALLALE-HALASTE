@@ -162,7 +162,7 @@ public class mouvementRoueD : MonoBehaviour
 			this.transform.position.x <= 3.397f &&
 			this.transform.position.y >= -1f)
 		{
-			if (Input.GetButtonDown("Fire1") && this.gameObject.GetComponent<SpriteRenderer>().sprite != verifNote)
+			if (Input.GetButtonDown("Fire1"))
 			{
 				scoreScriptD.scoreValue += 10;
 				ChangeSprite(verifNote);
