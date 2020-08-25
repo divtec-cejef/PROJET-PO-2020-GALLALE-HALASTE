@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Projet PO - Alex" company="DIVTEC" webLink="http://divtec.ch" view-date="2020-06-23" view-index="0" gantt-divider-location="429" resource-divider-location="300" version="2.8.10" locale="fr">
+<?xml version="1.0" encoding="UTF-8"?><project name="Projet PO - Alex" company="DIVTEC" webLink="http://divtec.ch" view-date="2020-07-06" view-index="0" gantt-divider-location="429" resource-divider-location="300" version="2.8.10" locale="fr">
     <description><![CDATA[Planification des heures dédiées aux portes ouvertes. Pour l'élève : Alex Gallucci]]></description>
     <view zooming-state="default:2" id="gantt-chart">
         <field id="tpd3" name="Nom" width="292" order="0"/>
@@ -55,7 +55,6 @@
             <task id="40" name="Programmation - comportement des notes de la roue" color="#8cb6ce" meeting="false" start="2020-06-26" duration="9" complete="0" thirdDate="2020-04-20" thirdDate-constraint="0" expand="true">
                 <task id="54" name="note - change le thème du jeu" color="#8cb6ce" meeting="false" start="2020-07-10" duration="1" complete="0" thirdDate="2020-04-20" thirdDate-constraint="0" expand="true"/>
                 <task id="56" name="note - change le rythme de la musique" meeting="false" start="2020-06-29" duration="1" complete="0" expand="true"/>
-                <task id="57" name="note - interchange les 2 roues" meeting="false" start="2020-07-09" duration="1" complete="0" expand="true"/>
                 <task id="58" name="note - change le sens de la roue touchée" meeting="false" start="2020-06-30" duration="1" complete="0" expand="true"/>
                 <task id="59" name="note - fait perdre une vie au joueur" meeting="false" start="2020-07-03" duration="1" complete="0" expand="true"/>
                 <task id="60" name="note - sans effet spéciale" meeting="false" start="2020-06-26" duration="1" complete="0" expand="true"/>
