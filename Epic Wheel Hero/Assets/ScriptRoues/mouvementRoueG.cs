@@ -5,7 +5,8 @@ using System;
 
 public class mouvementRoueG : MonoBehaviour
 {
-	public int test = 0;
+	
+
 	public Sprite blueNote;
 	public Sprite greenNote;
 	public Sprite redNote;
@@ -25,7 +26,6 @@ public class mouvementRoueG : MonoBehaviour
     private Transform positionCible6;
     private Transform positionCible7;
     private Transform positionCible8;
-    
 	
 	private bool isTargetOneReached = false;
 	private bool isTargetTwoReached = false;
@@ -46,52 +46,8 @@ public class mouvementRoueG : MonoBehaviour
 	private GameObject cible8;
 	
 	private bool isClonedThisRow = false;
-	public bool lol = true;
-	private Vector2 vecteur1 = new Vector2(-3.0f, 0.5f);
-	private Vector2 vecteur2 = new Vector2(-2.5f, -0.1f);
-	private Vector2 vecteur3 = new Vector2(-2.95f, -0.5f);
-	private Vector2 vecteur4 = new Vector2(-3.4f, -0.1f);
-	// Premier point
-	bool UnPoint(Vector2 rond1){
-		if (vecteur1 == rond1){
-			Debug.Log("jevois point1");
-			return true;
-		}
-		return false;
-	}
 	
-	// Deuxième point
-	bool DeuxPoint(Vector2 rond2){
-		if (vecteur2 == rond2){
-			Debug.Log("jevois point2");
-			return true;
-		}
-		return false;
-	}
-
-	// Troisième point
-	bool TroisPoint(Vector2 rond3){
-		if (vecteur3 == rond3){
-			Debug.Log("jevois point3");
-			return true;
-			
-		}
-		vieScriptG.vieValue -= 1;
-		return false;
-		
-	}
-
-	// Quatrième point
-	bool QuatrePoint(Vector2 rond4){
-		if (vecteur4 == rond4){
-			Debug.Log("jevois point4");
-			return true;
-			
-		}
-		return false;
-	}
 	
-
 	// Change la couleur de la note
 	void ChangeSprite(Sprite newColor)
     {
@@ -110,7 +66,7 @@ public class mouvementRoueG : MonoBehaviour
 		Destroy(cible8);
 		Destroy(gameObject);
 	}
-	
+
     void Awake()
     {
         // Position ou la note apparait au lancement de l'application
@@ -145,13 +101,9 @@ public class mouvementRoueG : MonoBehaviour
         positionCible7.transform.localScale = new Vector3(0.0f, 1.0f, 0.15f);
         positionCible8.transform.localScale = new Vector3(0.0f, 1.0f, 0.15f);
 		
-		//Vector2 rond1 = new Vector2(-3.0f, 0.5f);
-		//Vector2 rond2 = new Vector2(-2.5f, -0.1f);
-		//Vector2 rond3 = new Vector2(-2.95f, -0.5f);
-		//Vector2 rond4 = new Vector2(-3.4f, -0.1f);
-		
 		// Position cible -> 5.
         positionCible.transform.position = new Vector3(-6.272f, -3.18f, 4.0f);
+		
 	
 		// Position cible -> 6
         positionCible2.transform.position = new Vector3(-8.67f, -2.37f, 4.0f);
@@ -176,7 +128,7 @@ public class mouvementRoueG : MonoBehaviour
 		
 		System.Random randomNote = new System.Random();
 		int directionChoice = randomNote.Next(1, 6); 
-		
+
 
 		switch (directionChoice)
 		{
@@ -199,23 +151,14 @@ public class mouvementRoueG : MonoBehaviour
 	}
     void Update()
     {
-		Vector2 vec_position1 = new Vector2(this.transform.position.x, this.transform.position.y);
-		Debug.Log("x" + this.transform.position.x);
-		Debug.Log("y" + this.transform.position.y);
-	    // Augmente la vitesse de rotation de la roue
+		
+		// Augmente la vitesse de rotation de la roue
 		// au fur et à meusure que le temps passe
 		speed += Time.deltaTime / 150;
 		
 		float step =  speed * Time.deltaTime; // calculate distance to move
-		if (vieScriptG.vieValue == 1) 
-		{
-			
-		}
+
 		// Champ du viseur dans lequel le joueur peut interagire avec la note
-		//this.transform.position.x <= -2.5f && //2
-		//this.transform.position.x >= -3.4f &&//4
-		//this.transform.position.y >= -0.5f &&//3
-		//this.transform.position.y <= 0.5f) //1
 		if (Input.GetButtonDown("Fire1"))
 		{
 			if (this.transform.position.x <= -2.5f && //2
@@ -223,27 +166,31 @@ public class mouvementRoueG : MonoBehaviour
 			    this.transform.position.y >= -0.5f && //3
 			    this.transform.position.y <= 0.5f)
 			{
-				Debug.Log("je passe le if");
 				if (this.gameObject.GetComponent<SpriteRenderer>().sprite != verifNote)
 				{
 					Debug.Log("je rajoute les points");
 					scoreScriptG.scoreValue += 10;
 					ChangeSprite(verifNote);
 				}
-				if (UnPoint(vec_position1) ||
-				    DeuxPoint(vec_position1) ||
-				    TroisPoint(vec_position1) ||
-				    QuatrePoint(vec_position1))
+			}
+			if (triggerP1.trigger1 &&
+			    triggerP2.trigger2 &&
+			    triggerP3.trigger3 &&
+			    triggerP4.trigger4)
+			{
 				{
-					{
-						Debug.Log("j'enleve une vie");
-					}
+					vieScriptG.vieValue -= 0;
+					Debug.Log("j'enleve une vie" + vieScriptG.vieValue);
 				}
+			}
+			else
+			{
+				vieScriptG.vieValue -= 1;
+				Debug.Log("j'enleve une vie" + vieScriptG.vieValue);
 			}
 		}
 
-
-		// De la 5 vers la 6
+	// De la 5 vers la 6
 		 if(this.transform.position.x != -8.67f &&
 				this.transform.position.y != -2.37f &&
 				isTargetTwoReached == false){
