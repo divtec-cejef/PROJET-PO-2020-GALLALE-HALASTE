@@ -47,7 +47,9 @@
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
         <task id="0" name="Choisir le language de prog." color="#8cb6ce" meeting="false" start="2020-04-27" duration="2" complete="0" thirdDate="2020-03-26" thirdDate-constraint="0" expand="true"/>
-        <task id="1" name="Connecter les guitares au PC" color="#8cb6ce" meeting="false" start="2020-08-03" duration="2" complete="0" thirdDate="2020-03-26" thirdDate-constraint="0" expand="true"/>
+        <task id="1" name="Connecter les guitares au PC" color="#8cb6ce" meeting="false" start="2020-08-03" duration="2" complete="0" thirdDate="2020-03-26" thirdDate-constraint="0" expand="true">
+            <notes><![CDATA[.]]></notes>
+        </task>
         <task id="7" name="Créer la maquette d'affichage du stand" color="#8cb6ce" meeting="false" start="2020-06-29" duration="2" complete="0" thirdDate="2020-09-22" thirdDate-constraint="0" expand="true"/>
         <task id="6" name="Programmer le jeu" color="#8cb6ce" meeting="false" start="2020-06-04" duration="37" complete="0" thirdDate="2020-03-26" thirdDate-constraint="0" expand="true">
             <task id="38" name="Prendre les outputs des guitares" color="#8cb6ce" meeting="false" start="2020-08-06" duration="1" complete="0" thirdDate="2020-06-19" thirdDate-constraint="0" expand="true"/>
