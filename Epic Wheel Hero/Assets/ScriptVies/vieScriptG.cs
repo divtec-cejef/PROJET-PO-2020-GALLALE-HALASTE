@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class vieScriptG : MonoBehaviour
 {
 
-    public static int vieValue = 24;
+    public static int vieValue = 3;
 	Text vie;
     
 	
@@ -15,24 +15,24 @@ public class vieScriptG : MonoBehaviour
     {
         vie = GetComponent<Text> ();
     }
-
+    
     // Update is called once per frame
     void Update()
     {
 		switch (vieValue)
 		{
 			case 0:
-			vie.text = "0";
-			break;
-			case 8:
-			vie.text = "1";
-			break;
-			case 16:
-			vie.text = "2";
-			break;
-			case 24:
-			vie.text = "3";
-			break;
+				vie.text = "";
+				break;
+			case 1:
+				vie.text = "❤";
+				break;
+			case 2:
+				vie.text = "❤❤";
+				break;
+			case 3:
+				vie.text = "❤❤❤";
+				break;
     }
 	}
 }
