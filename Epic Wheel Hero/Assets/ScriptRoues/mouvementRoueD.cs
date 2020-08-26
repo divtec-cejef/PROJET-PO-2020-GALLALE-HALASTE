@@ -9,14 +9,21 @@ public class mouvementRoueD : MonoBehaviour
 	public Sprite redNote;
 	public Sprite orangeNote;
 	public Sprite yellowNote;
-	public Sprite verifNote;
+	public Sprite score10;
+	public Sprite score20;
+	public Sprite score30;
+	public Sprite score40;
+	public Sprite score50;
 
 	// Ajuste la vitesse du déplacement de la note
 	public float speed = 1.5f;
 
 	//timer
 	public static int timeRemainingD = 5000;
-	
+	//combo
+	public static int combo = 1;
+	// Gère la vitesse des notes, change avec les notes acceleration et decceleration
+	public int boostVitesse = 1;
 	// Objet de la position finale de l'élément
 	private Transform positionCible;
 	private Transform positionCible2;
@@ -69,7 +76,7 @@ public class mouvementRoueD : MonoBehaviour
 	void Awake()
 	{
 		// Position ou la note apparait au lancement de l'application
-		transform.position = new Vector3(6.198f, 3.198f, 4.0f);
+		transform.position = new Vector3(6.198f, -3.198f, 4.0f);
 
 		// Cree et positionne un objet qui sera la position cible de la note
 		cible = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
@@ -102,25 +109,25 @@ public class mouvementRoueD : MonoBehaviour
 
 
 		// Position cible -> 5.
-		positionCible.transform.position = new Vector3(6.198f, 3.198f, 4.0f);
+		positionCible.transform.position = new Vector3(6.198f, -3.198f, 4.0f);
 
 		// Position cible -> 6
-		positionCible2.transform.position = new Vector3(3.98f, -2.4f, 4.0f);
+		positionCible2.transform.position = new Vector3(3.912f, -2.417f, 4.0f);
 
 		// Position cible -> 7
-		positionCible3.transform.position = new Vector3(3.013f, -0.037f, 4.0f);
+		positionCible3.transform.position = new Vector3(2.948f, -0.052f, 4.0f);
 
 		// Position cible -> 8
-		positionCible4.transform.position = new Vector3(3.885f, 2.36f, 4.0f);
+		positionCible4.transform.position = new Vector3(3.825f, 2.339f, 4.0f);
 		
 		// Position cible -> 1
-		positionCible5.transform.position = new Vector3(6.272f, 3.295f, 4.0f);
+		positionCible5.transform.position = new Vector3(6.201f, 3.276f, 4.0f);
 		
 		// Position cible -> 2
-		positionCible6.transform.position = new Vector3(8.585f, 2.394f, 4.0f);
+		positionCible6.transform.position = new Vector3(8.518f, 2.369f, 4.0f);
 
 		// Position cible -> 3
-		positionCible7.transform.position = new Vector3(9.547f, 0.022f, 4.0f);
+		positionCible7.transform.position = new Vector3(9.485f, 0.007f, 4.0f);
 
 		// Position cible -> 4
 		positionCible8.transform.position = new Vector3(8.609f, -2.39f, 4.0f);
@@ -174,17 +181,49 @@ public class mouvementRoueD : MonoBehaviour
 				{
 					timeRemainingD += 5000;
 					vieScriptD.vieValue -= 1;
+					combo = 1;
 				}
 			} else if (this.transform.position.x >= 2.5f && //2
 			           this.transform.position.x <= 3.4f && //4
 			           this.transform.position.y >= -0.5f && //3
 			           this.transform.position.y <= 0.5f)
 			{
-				if (this.gameObject.GetComponent<SpriteRenderer>().sprite != verifNote)
+				switch (combo)
 				{
-					Debug.Log("je rajoute les points");
-					scoreScriptD.scoreValue += 10;
-					ChangeSprite(verifNote);
+					case 1:
+						if (this.gameObject.GetComponent<SpriteRenderer>().sprite != score10)
+						{
+							scoreScriptD.scoreValue += 10;
+							ChangeSprite(score10);
+							combo += 1;
+						}break;
+					case 2:
+						if (this.gameObject.GetComponent<SpriteRenderer>().sprite != score20)
+						{
+							scoreScriptD.scoreValue += 20;
+							ChangeSprite(score20);
+							combo += 1;
+						}break;
+					case 3:
+						if (this.gameObject.GetComponent<SpriteRenderer>().sprite != score30)
+						{
+							scoreScriptD.scoreValue += 30;
+							ChangeSprite(score30);
+							combo += 1;
+						}break;
+					case 4:
+						if (this.gameObject.GetComponent<SpriteRenderer>().sprite != score40)
+						{
+							scoreScriptD.scoreValue += 40;
+							ChangeSprite(score40);
+							combo += 1;
+						}break;
+					case 5:
+						if (this.gameObject.GetComponent<SpriteRenderer>().sprite != score50)
+						{
+							scoreScriptD.scoreValue += 50;
+							ChangeSprite(score50);
+						}break;
 				}
 			}
 		} 
@@ -197,48 +236,48 @@ public class mouvementRoueD : MonoBehaviour
 			transform.position = Vector3.MoveTowards(transform.position, positionCible8.position, step);}
 		
 		// De la 4 vers la 3
-		else if (this.transform.position.x != 9.547f &&
-				this.transform.position.y != 0.022f &&
+		else if (this.transform.position.x != 9.485f &&
+				this.transform.position.y != 0.007f &&
 				isTargetTwoReached == false){ 
 			// Quand la note arrive sur le point 3
 			if (!isClonedThisRow){
 				// Génère une nouvelle note sur le point 5
-				Instantiate(this, new Vector3(6.272f, -3.18f, 4.0f), Quaternion.identity);}
+				Instantiate(this, new Vector3(6.198f, -3.198f, 4.0f), Quaternion.identity);}
 				isClonedThisRow = true;
 				transform.position = Vector3.MoveTowards(transform.position, positionCible7.position, step);
 				isTargetOneReached = true;}
 		
 		// De la 3 vers la 2
-		else if (this.transform.position.x != 8.585f &&
-				this.transform.position.y != 2.394f &&
+		else if (this.transform.position.x != 8.518f &&
+				this.transform.position.y != 2.369f &&
 				isTargetThreeReached == false){
 				transform.position = Vector3.MoveTowards(transform.position, positionCible6.position, step);
 				isTargetTwoReached = true;}
 		
 		// De la 2 vers la 1
-		else if (this.transform.position.x != 6.272f &&
-				this.transform.position.y != 3.295f &&
+		else if (this.transform.position.x != 6.201f &&
+				this.transform.position.y != 3.276f &&
 				isTargetFourReached == false){
 				transform.position = Vector3.MoveTowards(transform.position, positionCible5.position, step);
 				isTargetThreeReached = true;}
 
 		// De la 1 vers la 8
-		else if (this.transform.position.x != 3.885f &&
-				this.transform.position.y != 2.36f &&
+		else if (this.transform.position.x != 3.825f &&
+				this.transform.position.y != 2.339f &&
 				isTargetFiveReached == false){
 				transform.position = Vector3.MoveTowards(transform.position, positionCible4.position, step);
 				isTargetFourReached = true;}
 
 		// De la 8 vers la 7
-		else if (this.transform.position.x != 3.013f &&
-				this.transform.position.y != -0.037f &&
+		else if (this.transform.position.x != 2.948f &&
+				this.transform.position.y != -0.052f &&
 				isTargetSixReached == false){
 				transform.position = Vector3.MoveTowards(transform.position, positionCible3.position, step);
 				isTargetFiveReached = true;}
 
 		// De la 7 vers la 6
-		else if (this.transform.position.x != 3.98f &&
-				this.transform.position.y != -2.4f &&
+		else if (this.transform.position.x != 3.912f &&
+				this.transform.position.y != -2.417f &&
 				isTargetSevenReached == false){
 				transform.position = Vector3.MoveTowards(transform.position, positionCible2.position, step);
 				isTargetSixReached = true;}
@@ -247,14 +286,19 @@ public class mouvementRoueD : MonoBehaviour
 		else if (this.transform.position.x != 6.198f &&
 				this.transform.position.y != -3.198f &&
 				isTargetEightReached == false){
-				if (this.gameObject.GetComponent<SpriteRenderer>().sprite != verifNote)
+			if (this.gameObject.GetComponent<SpriteRenderer>().sprite != score10 &&
+			    this.gameObject.GetComponent<SpriteRenderer>().sprite != score20 &&
+			    this.gameObject.GetComponent<SpriteRenderer>().sprite != score30 &&
+			    this.gameObject.GetComponent<SpriteRenderer>().sprite != score40 &&
+			    this.gameObject.GetComponent<SpriteRenderer>().sprite != score50 )
+			{
+				if (timeRemainingD == 0)
 				{
-					if (timeRemainingD == 0)
-					{
-						timeRemainingD += 5000;
-						vieScriptD.vieValue -= 1;
-					}
+					timeRemainingD += 5000;
+					vieScriptD.vieValue -= 1;
+					combo = 1;
 				}
+			}
 				transform.position = Vector3.MoveTowards(transform.position, positionCible.position, step);
 				isTargetSevenReached = true;}
 				else{

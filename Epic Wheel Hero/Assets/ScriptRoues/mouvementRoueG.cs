@@ -115,22 +115,22 @@ public class mouvementRoueG : MonoBehaviour
         positionCible2.transform.position = new Vector3(-8.609f, -2.39f, 4.0f);
 		
 		// Position cible -> 7
-        positionCible3.transform.position = new Vector3(-9.547f, 0.022f, 4.0f);
+        positionCible3.transform.position = new Vector3(-9.485f, 0.007f, 4.0f);
 		
 		// Position cible -> 8
-        positionCible4.transform.position = new Vector3(-8.585f, 2.394f, 4.0f);
+        positionCible4.transform.position = new Vector3(-8.518f, 2.369f, 4.0f);
 		
 		// Position cible -> 1
-        positionCible5.transform.position = new Vector3(-6.272f, 3.295f, 4.0f);
+        positionCible5.transform.position = new Vector3(-6.201f, 3.276f, 4.0f);
 		
 		// Position cible -> 2
-        positionCible6.transform.position = new Vector3(-3.885f, 2.36f, 4.0f);
+        positionCible6.transform.position = new Vector3(-3.825f, 2.339f, 4.0f);
 		
 		// Position cible -> 3
-        positionCible7.transform.position = new Vector3(-3.013f, -0.037f, 4.0f);
+        positionCible7.transform.position = new Vector3(-2.948f, -0.052f, 4.0f);
 		
 		// Position cible -> 4
-        positionCible8.transform.position = new Vector3(-3.98f, -2.4f, 4.0f);
+        positionCible8.transform.position = new Vector3(-3.912f, -2.417f, 4.0f);
 		
 		System.Random randomNote = new System.Random();
 		int directionChoice = randomNote.Next(1, 6); 
@@ -238,48 +238,48 @@ public class mouvementRoueG : MonoBehaviour
 			 transform.position = Vector3.MoveTowards(transform.position, positionCible2.position, step);}
 		 
 		 // De la 6 vers la 7
-		else if(this.transform.position.x != -9.547f &&
-				this.transform.position.y != 0.022f &&
+		else if(this.transform.position.x != -9.485f &&
+				this.transform.position.y != 0.007f &&
 				isTargetThreeReached == false) {
 			 // Quand la note arrive sur le point 7	
 			 if (!isClonedThisRow){
 				 // Génère une nouvelle note sur le point 5
-				 Instantiate(this, new Vector3(-6.272f, -3.18f, 4.0f), Quaternion.identity);} 
+				 Instantiate(this, new Vector3(-6.198f, -3.198f, 4.0f), Quaternion.identity);} 
 				isClonedThisRow = true;
 				transform.position = Vector3.MoveTowards(transform.position, positionCible3.position, step); 
 				isTargetTwoReached = true;}
 		 
 		 // De la 7 vers la 8
-		else if(this.transform.position.x != -8.585f &&
-				this.transform.position.y != 2.394f &&
+		else if(this.transform.position.x != -8.518f &&
+				this.transform.position.y != 2.369f &&
 				isTargetFourReached == false){
 				transform.position = Vector3.MoveTowards(transform.position, positionCible4.position, step);
 				isTargetThreeReached = true;}
 		
 		// De la 8 vers la 1
-		else if(this.transform.position.x != -6.272f &&
-				this.transform.position.y != 3.295f &&
+		else if(this.transform.position.x != -6.201f &&
+				this.transform.position.y != 3.276f &&
 				isTargetFiveReached == false){
 				transform.position = Vector3.MoveTowards(transform.position, positionCible5.position, step);
 				isTargetFourReached = true;}
 		
 		// De la 1 vers la 2
-		else if(this.transform.position.x != -3.885f &&
-				this.transform.position.y != 2.36f &&
+		else if(this.transform.position.x != -3.825f &&
+				this.transform.position.y != 2.339f &&
 				isTargetSixReached == false){
 				transform.position = Vector3.MoveTowards(transform.position, positionCible6.position, step);
 				isTargetFiveReached = true;}
 		
 		// De la 2 vers la 3
-		else if(this.transform.position.x != -3.013f &&
-				this.transform.position.y != -0.037f &&
+		else if(this.transform.position.x != -2.948f &&
+				this.transform.position.y != -0.052f &&
 				isTargetSevenReached == false){
 				transform.position = Vector3.MoveTowards(transform.position, positionCible7.position, step);
 				isTargetSixReached = true;}
 		
 		// De la 3 vers la 4
-		else if(this.transform.position.x != -3.98f &&
-				this.transform.position.y != -2.4f &&
+		else if(this.transform.position.x != -3.912f &&
+				this.transform.position.y != -2.417f &&
 				isTargetEightReached == false){
 				transform.position = Vector3.MoveTowards(transform.position, positionCible8.position, step);
 				isTargetSevenReached = true;}
