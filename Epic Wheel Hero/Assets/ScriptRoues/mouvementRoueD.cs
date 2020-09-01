@@ -4,17 +4,37 @@ using UnityEngine;
 using System;
 public class mouvementRoueD : MonoBehaviour
 {
+	//*******NOTE NORMALE******//
 	public Sprite blueNote;
 	public Sprite greenNote;
 	public Sprite redNote;
 	public Sprite orangeNote;
 	public Sprite yellowNote;
+	//**********SCORE*********//
 	public Sprite score10;
 	public Sprite score20;
 	public Sprite score30;
 	public Sprite score40;
 	public Sprite score50;
-
+	//****NOTE ACCELERATION***//
+	public Sprite noteAccelerationBleu;
+	public Sprite noteAccelerationJaune;
+	public Sprite noteAccelerationOrange;
+	public Sprite noteAccelerationRouge;
+	public Sprite noteAccelerationVert;
+	//*****NOTE PERTE VIE*****//
+	public Sprite notePerteVieBleu;
+	public Sprite notePerteVieJaune;
+	public Sprite notePerteVieOrange;
+	public Sprite notePerteVieRouge;
+	public Sprite notePerteVieVert;
+	//*******NOTE RALENTI*****//
+	public Sprite noteRalentiBleu;
+	public Sprite noteRalentiJaune;
+	public Sprite noteRalentiOrange;
+	public Sprite noteRalentiRouge;
+	public Sprite noteRalentiVert;
+	
 	// Ajuste la vitesse du déplacement de la note
 	public float speed = 1.5f;
 
@@ -133,9 +153,77 @@ public class mouvementRoueD : MonoBehaviour
 		positionCible8.transform.position = new Vector3(8.609f, -2.39f, 4.0f);
 		
 		System.Random randomNote = new System.Random();
-		int directionChoice = randomNote.Next(1, 6); 
+		int generationNote = randomNote.Next(1, 9);
+		int generationNoteAcceleration = randomNote.Next(1, 6);
+		int generationNotePerteVie = randomNote.Next(1, 6);
+		int generationNoteRalentie = randomNote.Next(1, 6);
+		void SwitchAcceleration()
+		{
+			switch (generationNoteAcceleration)
+			{
+				case 1:
+					ChangeSprite(noteAccelerationRouge); //red
+					break;
+				case 2:
+					ChangeSprite(noteAccelerationJaune); //yellow
+					break;
+				case 3:
+					ChangeSprite(noteAccelerationOrange); //orange
+					break;
+				case 4:
+					ChangeSprite(noteAccelerationBleu); //blue
+					break;
+				case 5:
+					ChangeSprite(noteAccelerationVert); //green
+					break;
+			}
+		}
+			
+		void SwitchPerteVie()
+		{
+			switch (generationNotePerteVie)
+			{
+				case 1:
+					ChangeSprite(notePerteVieRouge); //red
+					break;
+				case 2:
+					ChangeSprite(notePerteVieJaune); //yellow
+					break;
+				case 3:
+					ChangeSprite(notePerteVieOrange); //orange
+					break;
+				case 4:
+					ChangeSprite(notePerteVieBleu); //blue
+					break;
+				case 5:
+					ChangeSprite(notePerteVieVert); //green
+					break;
+			}
+		}
 		
-		switch (directionChoice)
+		void SwitchRalenti()
+		{
+			switch (generationNoteRalentie)
+			{
+				case 1:
+					ChangeSprite(noteRalentiRouge); //red
+					break;
+				case 2:
+					ChangeSprite(noteRalentiJaune); //yellow
+					break;
+				case 3:
+					ChangeSprite(noteRalentiOrange); //orange
+					break;
+				case 4:
+					ChangeSprite(noteRalentiBleu); //blue
+					break;
+				case 5:
+					ChangeSprite(noteRalentiVert); //green
+					break;
+			}
+		}
+		
+		switch (generationNote)
 		{
 			case 1:
 				ChangeSprite(redNote); //red
@@ -151,6 +239,19 @@ public class mouvementRoueD : MonoBehaviour
 				break;
 			case 5:
 				ChangeSprite(greenNote); //green
+				break;
+			case 6:
+				if ()
+				{
+					
+				}
+				SwitchAcceleration();
+				break;
+			case 7:
+				SwitchPerteVie();
+				break;
+			case 8:
+				SwitchRalenti();
 				break;
 		}
 	}
@@ -170,7 +271,11 @@ public class mouvementRoueD : MonoBehaviour
 		float step = speed * Time.deltaTime; // calculate distance to move
 		
 		// Champ du viseur dans lequel le joueur peut interagire avec la note
-		if (Input.GetButtonDown("Fire2"))
+		if (Input.GetKeyDown("a") && this.gameObject.GetComponent<SpriteRenderer>().sprite == yellowNote ||
+		    Input.GetKeyDown("s") && this.gameObject.GetComponent<SpriteRenderer>().sprite == redNote ||
+		    Input.GetKeyDown("d") && this.gameObject.GetComponent<SpriteRenderer>().sprite == blueNote ||
+		    Input.GetKeyDown("f") && this.gameObject.GetComponent<SpriteRenderer>().sprite == greenNote ||
+		    Input.GetKeyDown("g") && this.gameObject.GetComponent<SpriteRenderer>().sprite == orangeNote)
 		{
 			if (!(triggerP1D.verifTrigger1D &&
 			      triggerP4D.verifTrigger4D &&
