@@ -173,7 +173,11 @@ public class mouvementRoueG : MonoBehaviour
 		float step =  speed * Time.deltaTime; // calculate distance to move
 
 		// Champ du viseur dans lequel le joueur peut interagire avec la note
-		if (Input.GetButtonDown("Fire1"))
+		if (Input.GetKeyDown("q") && this.gameObject.GetComponent<SpriteRenderer>().sprite == yellowNote ||
+		    Input.GetKeyDown("w") && this.gameObject.GetComponent<SpriteRenderer>().sprite == redNote ||
+		    Input.GetKeyDown("e") && this.gameObject.GetComponent<SpriteRenderer>().sprite == blueNote ||
+		    Input.GetKeyDown("r") && this.gameObject.GetComponent<SpriteRenderer>().sprite == greenNote ||
+		    Input.GetKeyDown("t") && this.gameObject.GetComponent<SpriteRenderer>().sprite == orangeNote)
 		{
 			if (!(triggerP1G.verifTrigger1G &&
 			      triggerP4G.verifTrigger4G &&
