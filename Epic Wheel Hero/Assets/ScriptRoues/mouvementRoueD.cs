@@ -4,6 +4,11 @@ using UnityEngine;
 using System;
 public class mouvementRoueD : MonoBehaviour
 {
+	
+	//******NOTE INITIALE******//
+	public Sprite noteInitiale;
+	//*******NOTE ERREUR*******//
+	public Sprite noteErreur;
 	//*******NOTE NORMALE******//
 	public Sprite blueNote;
 	public Sprite greenNote;
@@ -38,10 +43,13 @@ public class mouvementRoueD : MonoBehaviour
 	// Ajuste la vitesse du déplacement de la note
 	public float speed = 1.5f;
 
+	public int count = 4;
 	//timer
-	public static int timeRemainingD = 5000;
+	public static int timeRemainingVieD = 5000;
+
+	public static int timeRemainingAccelerationD = 0;
 	//combo
-	public static int combo = 1;
+	public static int combo = 0;
 	// Gère la vitesse des notes, change avec les notes acceleration et decceleration
 	public int boostVitesse = 1;
 	// Objet de la position finale de l'élément
@@ -75,7 +83,7 @@ public class mouvementRoueD : MonoBehaviour
 	private bool isClonedThisRow = false;
 	
 	// Change la couleur de la note
-	void ChangeSprite(Sprite newColor)
+	 void ChangeSprite(Sprite newColor)
 	{
 		this.gameObject.GetComponent<SpriteRenderer>().sprite = newColor;
 	}
@@ -151,12 +159,17 @@ public class mouvementRoueD : MonoBehaviour
 
 		// Position cible -> 4
 		positionCible8.transform.position = new Vector3(8.609f, -2.39f, 4.0f);
+
+
+		
 		
 		System.Random randomNote = new System.Random();
-		int generationNote = randomNote.Next(1, 9);
+		int generationNote = randomNote.Next(1, 5);
 		int generationNoteAcceleration = randomNote.Next(1, 6);
 		int generationNotePerteVie = randomNote.Next(1, 6);
 		int generationNoteRalentie = randomNote.Next(1, 6);
+		int generationNoteNormale = randomNote.Next(1, 6);
+		
 		void SwitchAcceleration()
 		{
 			switch (generationNoteAcceleration)
@@ -177,6 +190,7 @@ public class mouvementRoueD : MonoBehaviour
 					ChangeSprite(noteAccelerationVert); //green
 					break;
 			}
+			count ++;
 		}
 			
 		void SwitchPerteVie()
@@ -199,10 +213,12 @@ public class mouvementRoueD : MonoBehaviour
 					ChangeSprite(notePerteVieVert); //green
 					break;
 			}
+			count ++;
 		}
 		
 		void SwitchRalenti()
 		{
+			
 			switch (generationNoteRalentie)
 			{
 				case 1:
@@ -221,70 +237,171 @@ public class mouvementRoueD : MonoBehaviour
 					ChangeSprite(noteRalentiVert); //green
 					break;
 			}
+			count ++;
 		}
 		
-		switch (generationNote)
+		void SwitchNoteNormale()
 		{
-			case 1:
-				ChangeSprite(redNote); //red
-				break;
-			case 2:
-				ChangeSprite(yellowNote); //yellow
-				break;
-			case 3:
-				ChangeSprite(orangeNote); //orange
-				break;
-			case 4:
-				ChangeSprite(blueNote); //blue
-				break;
-			case 5:
-				ChangeSprite(greenNote); //green
-				break;
-			case 6:
-				if ()
-				{
-					
-				}
-				SwitchAcceleration();
-				break;
-			case 7:
-				SwitchPerteVie();
-				break;
-			case 8:
-				SwitchRalenti();
-				break;
+			switch (generationNoteNormale)
+			{
+				case 1:
+					ChangeSprite(redNote); //red
+					break;
+				case 2:
+					ChangeSprite(yellowNote); //yellow
+					break;
+				case 3:
+					ChangeSprite(orangeNote); //orange
+					break;
+				case 4:
+					ChangeSprite(blueNote); //blue
+					break;
+				case 5:
+					ChangeSprite(greenNote); //green
+					break;
+			}
+			count ++;
 		}
+
+		if (count == 1)
+		{
+			ChangeSprite(noteInitiale);
+			count++;
+		}
+		else
+		{
+			switch (generationNote)
+			{
+				case 1:
+					if (count % 5 == 1)
+					{
+						SwitchAcceleration();
+					}
+					else 
+					{
+						SwitchNoteNormale();
+					}
+					break;
+				case 2:
+					if (count % 5 == 1)
+					{
+						SwitchRalenti();
+					}
+					else
+					{
+						SwitchNoteNormale();
+					}
+					break;
+				case 3:
+					if (count % 5 == 1)
+					{
+						SwitchPerteVie();
+					}
+					else
+					{
+						SwitchNoteNormale();
+					}
+					break;
+				case 4:
+					if (count % 5 == 1)
+					{
+						SwitchNoteNormale();
+					}
+					else
+					{
+						SwitchNoteNormale();
+					}
+					break;
+			}
+
+		}
+		
+	//	Debug.Log(count);
 	}
+	
 	void Update()
+	
 	{
-		if (timeRemainingD > 0)
+		if (timeRemainingVieD > 0)
 		{
-			timeRemainingD -= 1;
+			timeRemainingVieD -= 1;
 		}
-		else if (timeRemainingD < 0)
+		else if (timeRemainingVieD < 0)
 		{
-			timeRemainingD = 0;
+			timeRemainingVieD = 0;
 		}
+		if (timeRemainingAccelerationD > 0)
+		{
+			timeRemainingAccelerationD -= 1;
+		}
+		else if (timeRemainingAccelerationD < 0)
+		{
+			timeRemainingAccelerationD = 0;
+		}
+		
+		Debug.Log(mouvementRoueG.boostVitesse);
 		// Augmente la vitesse de rotation de la roue
 		// au fur et à meusure que le temps passe
 		speed += Time.deltaTime / 150;
 		float step = speed * Time.deltaTime; // calculate distance to move
 		
 		// Champ du viseur dans lequel le joueur peut interagire avec la note
-		if (Input.GetKeyDown("a") && this.gameObject.GetComponent<SpriteRenderer>().sprite == yellowNote ||
-		    Input.GetKeyDown("s") && this.gameObject.GetComponent<SpriteRenderer>().sprite == redNote ||
-		    Input.GetKeyDown("d") && this.gameObject.GetComponent<SpriteRenderer>().sprite == blueNote ||
-		    Input.GetKeyDown("f") && this.gameObject.GetComponent<SpriteRenderer>().sprite == greenNote ||
-		    Input.GetKeyDown("g") && this.gameObject.GetComponent<SpriteRenderer>().sprite == orangeNote)
+		
+		
+		
+		if (Input.GetKeyDown("a") && this.gameObject.GetComponent<SpriteRenderer>().sprite == noteAccelerationJaune ||
+		    Input.GetKeyDown("s") && this.gameObject.GetComponent<SpriteRenderer>().sprite == noteAccelerationRouge ||
+		    Input.GetKeyDown("d") && this.gameObject.GetComponent<SpriteRenderer>().sprite == noteAccelerationBleu ||
+		    Input.GetKeyDown("f") && this.gameObject.GetComponent<SpriteRenderer>().sprite == noteAccelerationVert ||
+		    Input.GetKeyDown("g") && this.gameObject.GetComponent<SpriteRenderer>().sprite == noteAccelerationOrange)
 		{
 			if (!(triggerP1D.verifTrigger1D &&
 			      triggerP4D.verifTrigger4D &&
 			      triggerP3D.verifTrigger3D &&
 			      triggerP2D.verifTrigger2D))
 			{
-				if (timeRemainingD == 0)
+				if (timeRemainingVieD == 0)
 				{
-					timeRemainingD += 5000;
+					timeRemainingVieD += 5000;
+					vieScriptD.vieValue -= 1;
+					combo = 1;
+				}
+			} else if (this.transform.position.x >= 2.5f && //2
+			           this.transform.position.x <= 3.4f && //4
+			           this.transform.position.y >= -0.5f && //3
+			           this.transform.position.y <= 0.5f)
+			{
+				timeRemainingAccelerationD = 5000;
+				if (timeRemainingAccelerationD > 0)
+					Debug.Log("entre dans le if");
+				{
+					while (timeRemainingAccelerationD != 0)
+					{
+						Debug.Log("boost");
+						mouvementRoueG.boostVitesse = 2f;
+					}
+					Debug.Log("remise normale");
+					mouvementRoueG.boostVitesse = 0.0f;
+				}
+			}
+		}
+		else if (Input.GetKeyDown("a") && this.gameObject.GetComponent<SpriteRenderer>().sprite == yellowNote ||
+		          Input.GetKeyDown("s") && this.gameObject.GetComponent<SpriteRenderer>().sprite == redNote ||
+		          Input.GetKeyDown("d") && this.gameObject.GetComponent<SpriteRenderer>().sprite == blueNote ||
+		          Input.GetKeyDown("f") && this.gameObject.GetComponent<SpriteRenderer>().sprite == greenNote ||
+		          Input.GetKeyDown("g") && this.gameObject.GetComponent<SpriteRenderer>().sprite == orangeNote)
+		{
+			if (!(triggerP1D.verifTrigger1D &&
+			      triggerP4D.verifTrigger4D &&
+			      triggerP3D.verifTrigger3D &&
+			      triggerP2D.verifTrigger2D))
+			{
+				//ChangeSprite(noteErreur);
+				//Debug.Log("affiche X");
+				
+				if (timeRemainingVieD == 0)
+				{
+					timeRemainingVieD += 5000;
 					vieScriptD.vieValue -= 1;
 					combo = 1;
 				}
@@ -331,7 +448,7 @@ public class mouvementRoueD : MonoBehaviour
 						}break;
 				}
 			}
-		} 
+		}  
 
 		
 		// Bouge de la position 5 vers la position 4
@@ -397,9 +514,9 @@ public class mouvementRoueD : MonoBehaviour
 			    this.gameObject.GetComponent<SpriteRenderer>().sprite != score40 &&
 			    this.gameObject.GetComponent<SpriteRenderer>().sprite != score50 )
 			{
-				if (timeRemainingD == 0)
+				if (timeRemainingVieD == 0)
 				{
-					timeRemainingD += 5000;
+					timeRemainingVieD += 5000;
 					vieScriptD.vieValue -= 1;
 					combo = 1;
 				}

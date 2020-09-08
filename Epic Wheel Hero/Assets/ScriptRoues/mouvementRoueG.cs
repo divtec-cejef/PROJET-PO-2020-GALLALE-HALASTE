@@ -24,7 +24,7 @@ public class mouvementRoueG : MonoBehaviour
 	//combo
 	public static int combo = 1;
     // Gère la vitesse des notes, change avec les notes acceleration et decceleration
-    public int boostVitesse = 1;
+    public static float boostVitesse = 0;
     
     // Objet de la position finale de l'élément
     private Transform positionCible;
@@ -169,7 +169,7 @@ public class mouvementRoueG : MonoBehaviour
 
 	    // Augmente la vitesse de rotation de la roue
 		// au fur et à meusure que le temps passe
-		speed += Time.deltaTime / 150 * boostVitesse;
+		speed += Time.deltaTime / 150 + boostVitesse;
 		float step =  speed * Time.deltaTime; // calculate distance to move
 
 		// Champ du viseur dans lequel le joueur peut interagire avec la note

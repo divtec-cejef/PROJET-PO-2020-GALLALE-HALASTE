@@ -4,6 +4,8 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
+  - noteInitiale: {fileID: 21300000, guid: ed5a50474aa4afd42ab863b37a13b209, type: 3}
+  - noteErreur: {fileID: 21300000, guid: d45945d698c82b04f9633f155c7b9a1d, type: 3}
   - blueNote: {fileID: 21300000, guid: 63a5590b1de52f64086a56512185172d, type: 3}
   - greenNote: {fileID: 21300000, guid: 46936bd94b509ac4bb484872d0ed3044, type: 3}
   - redNote: {fileID: 21300000, guid: 8cf0dc1f7ccc0d14ab0135388116a8f1, type: 3}
@@ -14,6 +16,30 @@ MonoImporter:
   - score30: {fileID: 21300000, guid: 64aaf3e82282f96439807be5af2222d7, type: 3}
   - score40: {fileID: 21300000, guid: c18a97aa3a5f6424cb4936c5f667095d, type: 3}
   - score50: {fileID: 21300000, guid: 640801bf5106b0040abb04c568871628, type: 3}
+  - noteAccelerationBleu: {fileID: 21300000, guid: 8583ee89fc45577468ced81f2db18f0c,
+      type: 3}
+  - noteAccelerationJaune: {fileID: 21300000, guid: a6e8d340ec673974bba0732325528620,
+      type: 3}
+  - noteAccelerationOrange: {fileID: 21300000, guid: 705eb6e47c3a6924693e3381319ef36f,
+      type: 3}
+  - noteAccelerationRouge: {fileID: 21300000, guid: 0ee0958716e513a42b0fd6f58ed1ede5,
+      type: 3}
+  - noteAccelerationVert: {fileID: 21300000, guid: 511d6a7288dc1714fa90290ccd8f5c1d,
+      type: 3}
+  - notePerteVieBleu: {fileID: 21300000, guid: 9c3135819c8142d419d96e084a8a0d1c, type: 3}
+  - notePerteVieJaune: {fileID: 21300000, guid: e04d20c4967a3664c8727959909a1b53,
+      type: 3}
+  - notePerteVieOrange: {fileID: 21300000, guid: 69c9595489806d34f8f9894eb185a87c,
+      type: 3}
+  - notePerteVieRouge: {fileID: 21300000, guid: 0a19aece76a72754e848ff14c102aee0,
+      type: 3}
+  - notePerteVieVert: {fileID: 21300000, guid: efef28b1d8dade8459bef1d76bc80b02, type: 3}
+  - noteRalentiBleu: {fileID: 21300000, guid: c9bdf3360ee21a24da1bdbe75154bac0, type: 3}
+  - noteRalentiJaune: {fileID: 21300000, guid: c8c77e70e2e562b46b6b3108180faa6b, type: 3}
+  - noteRalentiOrange: {fileID: 21300000, guid: a99d0f82da5342749b54be9abd0767ae,
+      type: 3}
+  - noteRalentiRouge: {fileID: 21300000, guid: 09fc7dbd0ed80a443893c1b9348bf313, type: 3}
+  - noteRalentiVert: {fileID: 21300000, guid: 9a4001cf3cd4ff140a4800d7213ef293, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
