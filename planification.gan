@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Projet PO - Alex" company="DIVTEC" webLink="http://divtec.ch" view-date="2020-07-06" view-index="0" gantt-divider-location="429" resource-divider-location="300" version="2.8.10" locale="fr">
+<?xml version="1.0" encoding="UTF-8"?><project name="Projet PO - Alex" company="DIVTEC" webLink="http://divtec.ch" view-date="2020-08-01" view-index="0" gantt-divider-location="429" resource-divider-location="300" version="2.8.10" locale="fr">
     <description><![CDATA[Planification des heures dédiées aux portes ouvertes. Pour l'élève : Alex Gallucci]]></description>
     <view zooming-state="default:2" id="gantt-chart">
         <field id="tpd3" name="Nom" width="292" order="0"/>
@@ -72,7 +72,7 @@
             <task id="50" name="Programmation - comportement des vies" meeting="false" start="2020-07-02" duration="1" complete="0" expand="true"/>
             <task id="51" name="Synchroniser la musique avec l'image" meeting="false" start="2020-06-23" duration="1" complete="0" expand="true"/>
         </task>
-        <task id="35" name="Tester que tout fonctionne correctement" color="#8cb6ce" meeting="false" start="2020-09-08" duration="7" complete="0" thirdDate="2020-09-08" thirdDate-constraint="0" expand="true"/>
+        <task id="35" name="Tester que tout fonctionne correctement" color="#8cb6ce" meeting="false" start="2020-08-10" duration="18" complete="0" thirdDate="2020-09-08" thirdDate-constraint="0" expand="true"/>
     </tasks>
     <resources/>
     <allocations/>
