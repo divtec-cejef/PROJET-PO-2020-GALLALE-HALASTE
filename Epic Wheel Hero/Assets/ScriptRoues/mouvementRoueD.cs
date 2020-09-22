@@ -2,9 +2,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Numerics;
+using System.Runtime.CompilerServices;
+using Quaternion = UnityEngine.Quaternion;
+using UnityEngine.SceneManagement;
+using Vector3 = UnityEngine.Vector3;
+
 public class mouvementRoueD : MonoBehaviour
 {
+	private static float arriere = 50f;
 	
+	// Far West
+	public GameObject FW_fond;
+	public GameObject FW_cactus1;
+	public GameObject FW_cactus2;
+	public GameObject FW_cactus3;
+	public GameObject FW_cactus4;
+	public GameObject FW_flaque;
+	public GameObject FW_village;
+	public GameObject FW_panneau;
+	public GameObject FW_roueG;
+	public GameObject FW_roueD;
+	public GameObject FW_teepees;
+
+	// Future
+	public GameObject FT_fond;
+	public GameObject FT_vaisseau1;
+	public GameObject FT_vaisseau2;
+	public GameObject FT_avion;
+	public GameObject FT_trouNoire;
+	public GameObject FT_roueG;
+	public GameObject FT_roueD;
+	
+	//PREHISTOIRE
+	public GameObject PR_roueG;
+	public GameObject PR_roueD;
+
+	public Sprite noteFuture;
+	public Sprite notePrehistoire;
 	//******NOTE INITIALE******//
 	public Sprite noteInitiale;
 	//*******NOTE ERREUR*******//
@@ -27,31 +62,38 @@ public class mouvementRoueD : MonoBehaviour
 	public Sprite noteAccelerationOrange;
 	public Sprite noteAccelerationRouge;
 	public Sprite noteAccelerationVert;
+	public Sprite noteAccelerationTouche;
 	//*****NOTE PERTE VIE*****//
 	public Sprite notePerteVieBleu;
 	public Sprite notePerteVieJaune;
 	public Sprite notePerteVieOrange;
 	public Sprite notePerteVieRouge;
 	public Sprite notePerteVieVert;
+	public Sprite notePerteVieTouche;
 	//*******NOTE RALENTI*****//
 	public Sprite noteRalentiBleu;
 	public Sprite noteRalentiJaune;
 	public Sprite noteRalentiOrange;
 	public Sprite noteRalentiRouge;
 	public Sprite noteRalentiVert;
+	public Sprite noteRalentiTouche;
 	
 	// Ajuste la vitesse du déplacement de la note
-	public float speed = 1.5f;
-
+	public float speed = menuDemarrage.attribuSpeed;
+	
 	public int count = 4;
 	//timer
 	public static int timeRemainingVieD = 5000;
 
 	public static int timeRemainingAccelerationD = 0;
+	public static int timeRemainingRalentiD = 0;
+	
+	public static int timeACD = 0;
+	public static int timeRLD = 0;
 	//combo
-	public static int combo = 0;
+	public static int combo = 1;
 	// Gère la vitesse des notes, change avec les notes acceleration et decceleration
-	public int boostVitesse = 1;
+	public static float boostVitesse = 0;
 	// Objet de la position finale de l'élément
 	private Transform positionCible;
 	private Transform positionCible2;
@@ -79,7 +121,7 @@ public class mouvementRoueD : MonoBehaviour
 	private GameObject cible6;
 	private GameObject cible7;
 	private GameObject cible8;
-
+	
 	private bool isClonedThisRow = false;
 	
 	// Change la couleur de la note
@@ -101,11 +143,124 @@ public class mouvementRoueD : MonoBehaviour
 		Destroy(cible8);
 		Destroy(gameObject);
 	}
+	
+	// Vecteurs 3
+	// Far West
+	public Vector3 POS_FW_fond = new Vector3(0f,0f,0f);
+	public Vector3 POS_FW_cactus1 = new Vector3(0f,0f,0f);
+	public Vector3 POS_FW_cactus2 = new Vector3(0f,0f,0f);
+	public Vector3 POS_FW_cactus3 = new Vector3(0f,0f,0f);
+	public Vector3 POS_FW_cactus4 = new Vector3(0f,0f,0f);
+	public Vector3 POS_FW_flaque = new Vector3(0f,0f,0f);
+	public Vector3 POS_FW_village = new Vector3(0f,0f,0f);
+	public Vector3 POS_FW_panneau = new Vector3(0f,0f,0f);
+	public Vector3 POS_FW_roueG = new Vector3(0f,0f,0f);
+	public Vector3 POS_FW_roueD = new Vector3(0f,0f,0f);
+	public Vector3 POS_FW_teepees = new Vector3(0f,0f,0f);
+    
+	// Future
+	public Vector3 POS_FT_fond = new Vector3(0f,0f,0f);
+	public Vector3 POS_FT_vaisseau1 = new Vector3(0f,0f,0f);
+	public Vector3 POS_FT_vaisseau2 = new Vector3(0f,0f,0f);
+	public Vector3 POS_FT_avion = new Vector3(0f,0f,0f);
+	public Vector3 POS_FT_trouNoire = new Vector3(0f,0f,0f);
+	public Vector3 POS_FT_roueG = new Vector3(0f,0f,0f);
+	public Vector3 POS_FT_roueD = new Vector3 (0f,0f,0f);
+	
+	//PREHISTOIRE
+	public Vector3 POS_PR_roueG = new Vector3(0f,0f,0f);
+	public Vector3 POS_PR_roueD = new Vector3(0f, 0f, 0f);
+	
+	public void apparitionFuture()
+	{
+		POS_FW_fond.z = arriere;
+		FW_fond.transform.position = POS_FW_fond;
+            
+		POS_FW_cactus1.z = arriere;
+		FW_cactus1.transform.position = POS_FW_cactus1;
+            
+		POS_FW_cactus2.z = arriere;
+		FW_cactus2.transform.position = POS_FW_cactus2;
+            
+		POS_FW_cactus3.z = arriere;
+		FW_cactus3.transform.position = POS_FW_cactus3;
+            
+		POS_FW_cactus4.z = arriere;
+		FW_cactus4.transform.position = POS_FW_cactus4;
+            
+		POS_FW_panneau.z = arriere;
+		FW_panneau.transform.position = POS_FW_panneau;
+            
+		POS_FW_flaque.z = arriere;
+		FW_flaque.transform.position = POS_FW_flaque;
+            
+		POS_FW_village.z = arriere;
+		FW_village.transform.position = POS_FW_village;
+            
+		POS_FW_roueD.z = arriere;
+		FW_roueD.transform.position = POS_FW_roueD;
+            
+		POS_FW_roueG.z = arriere;
+		FW_roueG.transform.position = POS_FW_roueG;
+            
+		POS_FW_teepees.z = arriere;
+		FW_teepees.transform.position = POS_FW_teepees;
+		
+		POS_FT_roueD.x = FT_roueD.transform.position.x;
+		POS_FT_roueD.y = FT_roueD.transform.position.y;
+		POS_FT_roueD.z = 3f;
+		FT_roueD.transform.position = POS_FT_roueD;
+		
+		POS_FT_roueG.x = FT_roueG.transform.position.x;
+		POS_FT_roueG.y = FT_roueG.transform.position.y;
+		POS_FT_roueG.z = 3f;
+		FT_roueG.transform.position = POS_FT_roueG;
+		vieScriptG.vie.color = Color.white;
+		vieScriptD.vie.color = Color.white;
+		audioScript.compteurTheme = 2;
+	}
+        
+	public void apparitionPrehistoire()
+	{
+		POS_FT_fond.z = arriere;
+		FT_fond.transform.position = POS_FT_fond;
+            
+		POS_FT_roueD.z = arriere;
+		FT_roueD.transform.position = POS_FT_roueD;
+            
+		POS_FT_roueG.z = arriere;
+		FT_roueG.transform.position = POS_FT_roueG;
+            
+		POS_FT_vaisseau1.z = arriere;
+		FT_vaisseau1.transform.position = POS_FT_vaisseau1;
+            
+		POS_FT_vaisseau2.z = arriere;
+		FT_vaisseau2.transform.position = POS_FT_vaisseau2;
+            
+		POS_FT_avion.z = arriere;
+		FT_avion.transform.position = POS_FT_avion;
+            
+		POS_FT_trouNoire.z = arriere;
+		FT_trouNoire.transform.position = POS_FT_trouNoire;
+		
+		POS_PR_roueD.x = PR_roueD.transform.position.x;
+		POS_PR_roueD.y = PR_roueD.transform.position.y;
+		POS_PR_roueD.z = 2f;
+		PR_roueD.transform.position = POS_PR_roueD;
+		
+		POS_PR_roueG.x = PR_roueG.transform.position.x;
+		POS_PR_roueG.y = PR_roueG.transform.position.y;
+		POS_PR_roueG.z = 2f;
+		PR_roueG.transform.position = POS_PR_roueG;
+		vieScriptG.vie.color = Color.white;
+		vieScriptD.vie.color = Color.white;
+		audioScript.compteurTheme = 3;
+	}
+	
 	void Awake()
 	{
 		// Position ou la note apparait au lancement de l'application
 		transform.position = new Vector3(6.198f, -3.198f, 4.0f);
-
 		// Cree et positionne un objet qui sera la position cible de la note
 		cible = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
 		cible2 = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
@@ -125,7 +280,7 @@ public class mouvementRoueD : MonoBehaviour
 		positionCible6 = cible6.transform;
 		positionCible7 = cible7.transform;
 		positionCible8 = cible8.transform;
-
+		
 		positionCible.transform.localScale = new Vector3(0.0f, 1.0f, 0.15f);
 		positionCible2.transform.localScale = new Vector3(0.0f, 1.0f, 0.15f);
 		positionCible3.transform.localScale = new Vector3(0.0f, 1.0f, 0.15f);
@@ -134,7 +289,6 @@ public class mouvementRoueD : MonoBehaviour
 		positionCible6.transform.localScale = new Vector3(0.0f, 1.0f, 0.15f);
 		positionCible7.transform.localScale = new Vector3(0.0f, 1.0f, 0.15f);
 		positionCible8.transform.localScale = new Vector3(0.0f, 1.0f, 0.15f);
-
 
 		// Position cible -> 5.
 		positionCible.transform.position = new Vector3(6.198f, -3.198f, 4.0f);
@@ -159,9 +313,6 @@ public class mouvementRoueD : MonoBehaviour
 
 		// Position cible -> 4
 		positionCible8.transform.position = new Vector3(8.609f, -2.39f, 4.0f);
-
-
-		
 		
 		System.Random randomNote = new System.Random();
 		int generationNote = randomNote.Next(1, 5);
@@ -268,6 +419,16 @@ public class mouvementRoueD : MonoBehaviour
 			ChangeSprite(noteInitiale);
 			count++;
 		}
+		else if (count == 5)
+		{
+			ChangeSprite(noteFuture);
+			count++;
+		}
+		else if (count == 10)
+		{
+			ChangeSprite(notePrehistoire);
+			count++;
+		}
 		else
 		{
 			switch (generationNote)
@@ -315,13 +476,17 @@ public class mouvementRoueD : MonoBehaviour
 			}
 
 		}
-		
-	//	Debug.Log(count);
+
+		//	Debug.Log(count);
 	}
-	
 	void Update()
-	
 	{
+		/////////////////////////
+		if (vieScriptD.vieValue == 0)
+		{
+			SceneManager.LoadScene("GameScene_HighscoreTable", LoadSceneMode.Single);
+		}
+		////////////////////////
 		if (timeRemainingVieD > 0)
 		{
 			timeRemainingVieD -= 1;
@@ -330,30 +495,50 @@ public class mouvementRoueD : MonoBehaviour
 		{
 			timeRemainingVieD = 0;
 		}
+		///////////////////////////////////
 		if (timeRemainingAccelerationD > 0)
 		{
 			timeRemainingAccelerationD -= 1;
 		}
-		else if (timeRemainingAccelerationD < 0)
+		else
 		{
-			timeRemainingAccelerationD = 0;
+			if (timeACD > 0)
+			{
+				mouvementRoueG.boostVitesse = -0.01f;
+				timeACD -= 1;
+			}
+			else if(timeACD == 0 && timeRLD == 0)
+			{
+				mouvementRoueG.boostVitesse = 0.0f;
+			}
+		}
+		/////////////////////////////////////
+		
+		if (timeRemainingRalentiD > 0)
+		{
+			timeRemainingRalentiD -= 1;
+		}
+		else
+		{
+			if (timeRLD > 0)
+			{
+				mouvementRoueG.boostVitesse = 0.01f;
+				timeRLD -= 1;
+			}
+			else if(timeACD == 0 && timeRLD == 0)
+			{
+				mouvementRoueG.boostVitesse = 0.0f;
+			}
+		
 		}
 		
-		Debug.Log(mouvementRoueG.boostVitesse);
 		// Augmente la vitesse de rotation de la roue
 		// au fur et à meusure que le temps passe
-		speed += Time.deltaTime / 150;
+		speed += Time.deltaTime / 150 + boostVitesse;
 		float step = speed * Time.deltaTime; // calculate distance to move
 		
 		// Champ du viseur dans lequel le joueur peut interagire avec la note
-		
-		
-		
-		if (Input.GetKeyDown("a") && this.gameObject.GetComponent<SpriteRenderer>().sprite == noteAccelerationJaune ||
-		    Input.GetKeyDown("s") && this.gameObject.GetComponent<SpriteRenderer>().sprite == noteAccelerationRouge ||
-		    Input.GetKeyDown("d") && this.gameObject.GetComponent<SpriteRenderer>().sprite == noteAccelerationBleu ||
-		    Input.GetKeyDown("f") && this.gameObject.GetComponent<SpriteRenderer>().sprite == noteAccelerationVert ||
-		    Input.GetKeyDown("g") && this.gameObject.GetComponent<SpriteRenderer>().sprite == noteAccelerationOrange)
+		if (Input.GetKeyDown("k") && this.gameObject.GetComponent<SpriteRenderer>().sprite == notePrehistoire)
 		{
 			if (!(triggerP1D.verifTrigger1D &&
 			      triggerP4D.verifTrigger4D &&
@@ -371,18 +556,115 @@ public class mouvementRoueD : MonoBehaviour
 			           this.transform.position.y >= -0.5f && //3
 			           this.transform.position.y <= 0.5f)
 			{
-				timeRemainingAccelerationD = 5000;
-				if (timeRemainingAccelerationD > 0)
-					Debug.Log("entre dans le if");
+				apparitionPrehistoire();
+			}
+		}
+		if (Input.GetKeyDown("k") && this.gameObject.GetComponent<SpriteRenderer>().sprite == noteFuture)
+		{
+			if (!(triggerP1D.verifTrigger1D &&
+			      triggerP4D.verifTrigger4D &&
+			      triggerP3D.verifTrigger3D &&
+			      triggerP2D.verifTrigger2D))
+			{
+				if (timeRemainingVieD == 0)
 				{
-					while (timeRemainingAccelerationD != 0)
-					{
-						Debug.Log("boost");
-						mouvementRoueG.boostVitesse = 2f;
-					}
-					Debug.Log("remise normale");
-					mouvementRoueG.boostVitesse = 0.0f;
+					timeRemainingVieD += 5000;
+					vieScriptD.vieValue -= 1;
+					combo = 1;
 				}
+			} else if (this.transform.position.x >= 2.5f && //2
+			           this.transform.position.x <= 3.4f && //4
+			           this.transform.position.y >= -0.5f && //3
+			           this.transform.position.y <= 0.5f)
+			{
+				apparitionFuture();
+			}
+		}
+		if (Input.GetKeyDown("a") && this.gameObject.GetComponent<SpriteRenderer>().sprite == notePerteVieJaune ||
+		    Input.GetKeyDown("s") && this.gameObject.GetComponent<SpriteRenderer>().sprite == notePerteVieRouge ||
+		    Input.GetKeyDown("d") && this.gameObject.GetComponent<SpriteRenderer>().sprite == notePerteVieBleu ||
+		    Input.GetKeyDown("f") && this.gameObject.GetComponent<SpriteRenderer>().sprite == notePerteVieVert ||
+		    Input.GetKeyDown("g") && this.gameObject.GetComponent<SpriteRenderer>().sprite == notePerteVieOrange)
+		{
+			if (!(triggerP1D.verifTrigger1D &&
+			      triggerP4D.verifTrigger4D &&
+			      triggerP3D.verifTrigger3D &&
+			      triggerP2D.verifTrigger2D))
+			{
+				if (timeRemainingVieD == 0)
+				{
+					timeRemainingVieD += 5000;
+					vieScriptD.vieValue -= 1;
+					combo = 1;
+				}
+			} else if (this.transform.position.x >= 2.5f && //2
+			           this.transform.position.x <= 3.4f && //4
+			           this.transform.position.y >= -0.5f && //3
+			           this.transform.position.y <= 0.5f)
+			{
+				ChangeSprite(notePerteVieTouche);
+				if (timeRemainingVieD == 0)
+				{
+					timeRemainingVieD += 5000;
+					vieScriptD.vieValue -= 1;
+					combo = 1;
+				}
+			}
+		}
+		else if (Input.GetKeyDown("a") && this.gameObject.GetComponent<SpriteRenderer>().sprite == noteRalentiJaune ||
+		    Input.GetKeyDown("s") && this.gameObject.GetComponent<SpriteRenderer>().sprite == noteRalentiRouge ||
+		    Input.GetKeyDown("d") && this.gameObject.GetComponent<SpriteRenderer>().sprite == noteRalentiBleu ||
+		    Input.GetKeyDown("f") && this.gameObject.GetComponent<SpriteRenderer>().sprite == noteRalentiVert ||
+		    Input.GetKeyDown("g") && this.gameObject.GetComponent<SpriteRenderer>().sprite == noteRalentiOrange)
+		{
+			if (!(triggerP1D.verifTrigger1D &&
+			      triggerP4D.verifTrigger4D &&
+			      triggerP3D.verifTrigger3D &&
+			      triggerP2D.verifTrigger2D))
+			{
+				if (timeRemainingVieD == 0)
+				{
+					timeRemainingVieD += 5000;
+					vieScriptD.vieValue -= 1;
+					combo = 1;
+				}
+			} else if (this.transform.position.x >= 2.5f && //2
+			           this.transform.position.x <= 3.4f && //4
+			           this.transform.position.y >= -0.5f && //3
+			           this.transform.position.y <= 0.5f)
+			{
+				ChangeSprite(noteRalentiTouche);
+				timeRLD += 1000;
+				timeRemainingRalentiD += 1000;
+				mouvementRoueG.boostVitesse = -0.01f;
+			}
+		}
+		else if (Input.GetKeyDown("a") && this.gameObject.GetComponent<SpriteRenderer>().sprite == noteAccelerationJaune ||
+		         Input.GetKeyDown("s") && this.gameObject.GetComponent<SpriteRenderer>().sprite == noteAccelerationRouge ||
+		         Input.GetKeyDown("d") && this.gameObject.GetComponent<SpriteRenderer>().sprite == noteAccelerationBleu ||
+		         Input.GetKeyDown("f") && this.gameObject.GetComponent<SpriteRenderer>().sprite == noteAccelerationVert ||
+		         Input.GetKeyDown("g") && this.gameObject.GetComponent<SpriteRenderer>().sprite == noteAccelerationOrange)
+		{
+			if (!(triggerP1D.verifTrigger1D &&
+			      triggerP4D.verifTrigger4D &&
+			      triggerP3D.verifTrigger3D &&
+			      triggerP2D.verifTrigger2D))
+			{
+				if (timeRemainingVieD == 0)
+				{
+					timeRemainingVieD += 5000;
+					vieScriptD.vieValue -= 1;
+					combo = 1;
+				}
+			} else if (this.transform.position.x >= 2.5f && //2
+			           this.transform.position.x <= 3.4f && //4
+			           this.transform.position.y >= -0.5f && //3
+			           this.transform.position.y <= 0.5f)
+			{
+				ChangeSprite(noteAccelerationTouche);
+				timeACD += 1000;
+				timeRemainingAccelerationD += 1000;
+				mouvementRoueG.boostVitesse = 0.01f;
 			}
 		}
 		else if (Input.GetKeyDown("a") && this.gameObject.GetComponent<SpriteRenderer>().sprite == yellowNote ||
@@ -449,7 +731,6 @@ public class mouvementRoueD : MonoBehaviour
 				}
 			}
 		}  
-
 		
 		// Bouge de la position 5 vers la position 4
 		if (this.transform.position.x != 8.609f &&
@@ -512,7 +793,18 @@ public class mouvementRoueD : MonoBehaviour
 			    this.gameObject.GetComponent<SpriteRenderer>().sprite != score20 &&
 			    this.gameObject.GetComponent<SpriteRenderer>().sprite != score30 &&
 			    this.gameObject.GetComponent<SpriteRenderer>().sprite != score40 &&
-			    this.gameObject.GetComponent<SpriteRenderer>().sprite != score50 )
+			    this.gameObject.GetComponent<SpriteRenderer>().sprite != score50 &&
+			    this.gameObject.GetComponent<SpriteRenderer>().sprite != noteAccelerationTouche &&
+			    this.gameObject.GetComponent<SpriteRenderer>().sprite != noteRalentiTouche &&
+			    this.gameObject.GetComponent<SpriteRenderer>().sprite != notePerteVieBleu &&
+			    this.gameObject.GetComponent<SpriteRenderer>().sprite != notePerteVieJaune &&
+			    this.gameObject.GetComponent<SpriteRenderer>().sprite != notePerteVieOrange &&
+			    this.gameObject.GetComponent<SpriteRenderer>().sprite != notePerteVieRouge &&
+			    this.gameObject.GetComponent<SpriteRenderer>().sprite != notePerteVieVert &&
+			    this.gameObject.GetComponent<SpriteRenderer>().sprite != notePerteVieTouche &&
+			    this.gameObject.GetComponent<SpriteRenderer>().sprite != noteInitiale &&
+				this.gameObject.GetComponent<SpriteRenderer>().sprite != noteFuture &&
+				this.gameObject.GetComponent<SpriteRenderer>().sprite != notePrehistoire)
 			{
 				if (timeRemainingVieD == 0)
 				{

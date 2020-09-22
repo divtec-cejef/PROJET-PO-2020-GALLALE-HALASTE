@@ -8,7 +8,7 @@ public class scoreScriptG : MonoBehaviour
 {
 
     public static int scoreValue = 0;
-    TextMeshProUGUI score;
+    public static TextMeshProUGUI score;
     
     // Start is called before the first frame update
     void Start()

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class vieScriptD : MonoBehaviour
 {
     public static int vieValue = 3;
-    TextMeshProUGUI vie;
+    public static TextMeshProUGUI vie;
 
 	
     // Start is called before the first frame update
